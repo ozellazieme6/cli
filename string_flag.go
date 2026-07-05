@@ -16,9 +16,9 @@ func (f *StringFlag) Apply(set *flag.FlagSet) error {
 	}
 
 	if f.Destination != nil {
-		*f.Destination = val
+		set.StringVar(f.Destination, f.Name, val, f.Usage)
+	} else {
+		set.String(f.Name, val, f.Usage)
 	}
-
-	set.String(f.Name, val, f.Usage)
 	return nil
 }
